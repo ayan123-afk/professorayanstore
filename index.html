@@ -3,1151 +3,1537 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professor Ayan Store | Digital Solutions</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap">
+    <title>Professor Ayan Store | Creative Digital Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --dark-bg: #0a0a12;
-            --darker-bg: #07070e;
-            --navy-bg: #0d1128;
-            --deep-blue: #001f3f;
-            --electric-blue: #0077ff;
-            --electric-blue-light: #0095ff;
-            --deep-red: #ff0033;
-            --soft-gold: #ffd700;
-            --light-gold: #ffec8b;
-            --text-light: #f5f5f5;
-            --text-muted: #a0a0b0;
-            --border-radius: 12px;
-            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            --box-shadow-light: 0 5px 15px rgba(0, 0, 0, 0.3);
-            --box-shadow-glow: 0 0 15px rgba(0, 119, 255, 0.5);
-            --box-shadow-glow-gold: 0 0 15px rgba(255, 215, 0, 0.4);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, var(--darker-bg), var(--navy-bg));
-            color: var(--text-light);
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
-            background-attachment: fixed;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 10% 20%, rgba(0, 31, 63, 0.15) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(255, 0, 51, 0.1) 0%, transparent 20%);
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .particle {
-            position: absolute;
-            border-radius: 50%;
-            background: var(--electric-blue);
-            opacity: 0.3;
-            animation: float 15s infinite linear;
-        }
-
+        /* Enhanced Animations */
         @keyframes float {
-            0% {
-                transform: translateY(0) translateX(0) rotate(0deg);
-                opacity: 0.2;
-            }
-            50% {
-                opacity: 0.4;
-            }
-            100% {
-                transform: translateY(-100vh) translateX(100px) rotate(360deg);
-                opacity: 0.2;
-            }
+            0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); }
+            25% { transform: translateY(-30px) translateX(20px) rotate(5deg); }
+            50% { transform: translateY(20px) translateX(-30px) rotate(-5deg); }
+            75% { transform: translateY(-20px) translateX(30px) rotate(3deg); }
         }
-
-        /* Header & Navigation */
-        header {
-            position: fixed;
-            top: 0;
+        
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.15); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideIn {
+            0% { opacity: 0; transform: translateX(50px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-20px);}
+            60% {transform: translateY(-10px);}
+        }
+        
+        @keyframes tada {
+            0% {transform: scale(1);}
+            10%, 20% {transform: scale(0.9) rotate(-3deg);}
+            30%, 50%, 70%, 90% {transform: scale(1.1) rotate(3deg);}
+            40%, 60%, 80% {transform: scale(1.1) rotate(-3deg);}
+            100% {transform: scale(1) rotate(0);}
+        }
+        
+        @keyframes flip {
+            0% {transform: perspective(400px) rotateY(0); animation-timing-function: ease-out;}
+            40% {transform: perspective(400px) translateZ(150px) rotateY(170deg) scale(1); animation-timing-function: ease-out;}
+            50% {transform: perspective(400px) translateZ(150px) rotateY(190deg) scale(1); animation-timing-function: ease-in;}
+            80% {transform: perspective(400px) rotateY(360deg) scale(.95); animation-timing-function: ease-in;}
+            100% {transform: perspective(400px) scale(1); animation-timing-function: ease-in;}
+        }
+        
+        @keyframes zoomIn {
+            0% {opacity: 0; transform: scale(.3);}
+            100% {opacity: 1; transform: scale(1);}
+        }
+        
+        @keyframes glow {
+            0% { box-shadow: 0 0 5px #8A2BE2, 0 0 10px #00BFFF; }
+            50% { box-shadow: 0 0 20px #8A2BE2, 0 0 30px #00BFFF; }
+            100% { box-shadow: 0 0 5px #8A2BE2, 0 0 10px #00BFFF; }
+        }
+        
+        @keyframes wave {
+            0% { transform: rotate(0deg); }
+            10% { transform: rotate(14deg); }
+            20% { transform: rotate(-8deg); }
+            30% { transform: rotate(14deg); }
+            40% { transform: rotate(-4deg); }
+            50% { transform: rotate(10deg); }
+            60% { transform: rotate(0deg); }
+            100% { transform: rotate(0deg); }
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Enhanced Styles */
+        .gradient-text {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(45deg, #8A2BE2, #00BFFF);
+        }
+        
+        .floating-shape {
+            animation: float 15s infinite ease-in-out;
+        }
+        
+        .floating-shape-2 {
+            animation: float 12s infinite ease-in-out 1s;
+        }
+        
+        .floating-shape-3 {
+            animation: float 18s infinite ease-in-out 2s;
+        }
+        
+        .pulse-icon {
+            animation: pulse 1.5s infinite;
+        }
+        
+        .glass-effect {
+            backdrop-filter: blur(16px);
+            background: rgba(15, 15, 25, 0.7);
+            border: 1px solid rgba(138, 43, 226, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+        
+        .gradient-border {
+            position: relative;
+        }
+        
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 2px;
+            background: linear-gradient(45deg, #8A2BE2, #00BFFF);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+        
+        .scroll-hidden::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.7s ease-out forwards;
+        }
+        
+        .slide-in {
+            animation: slideIn 0.7s ease-out forwards;
+        }
+        
+        .rotate-hover:hover {
+            animation: rotate 0.7s ease-out;
+        }
+        
+        .service-card {
+            transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            transform: translateZ(20px);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.02) rotateY(5deg) translateZ(30px);
+            box-shadow: 0 20px 30px rgba(138, 43, 226, 0.3);
+        }
+        
+        .card-1 { animation-delay: 0.1s; }
+        .card-2 { animation-delay: 0.2s; }
+        .card-3 { animation-delay: 0.3s; }
+        .card-4 { animation-delay: 0.4s; }
+        .card-5 { animation-delay: 0.5s; }
+        .card-6 { animation-delay: 0.6s; }
+        
+        .bounce { animation: bounce 1.5s infinite; }
+        .tada { animation: tada 1.5s; }
+        .flip { animation: flip 1.5s; }
+        .zoom-in { animation: zoomIn 0.7s; }
+        .glow { animation: glow 3s infinite; }
+        .wave { animation: wave 2s infinite; }
+        
+        .floating-cart {
+            animation: bounce 2s infinite;
+        }
+        
+        body {
+            background: linear-gradient(-45deg, #0a0a0a, #1a1a2e, #16213e, #0f3460);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
+        }
+        
+        .cart-badge {
+            animation: tada 0.8s;
+        }
+        
+        .cart-item-enter {
+            animation: zoomIn 0.5s;
+        }
+        
+        .cart-item-exit {
+            animation: fadeIn 0.5s reverse;
+        }
+        
+        .floating-icon {
+            animation: float 8s infinite ease-in-out;
+        }
+        
+        /* New 3D Card Effects */
+        .service-card-3d {
+            transform-style: preserve-3d;
+            transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            box-shadow: 0 15px 35px rgba(138, 43, 226, 0.2);
+        }
+        
+        .service-card-3d:hover {
+            transform: perspective(1000px) rotateX(5deg) rotateY(5deg) scale3d(1.02, 1.02, 1.02);
+            box-shadow: 0 25px 50px rgba(138, 43, 226, 0.4);
+        }
+        
+        .card-content {
+            transform: translateZ(30px);
+        }
+        
+        /* Enhanced Cart Styles */
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        .quantity-btn {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(138, 43, 226, 0.2);
+            border: none;
+            color: #8A2BE2;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .quantity-btn:hover {
+            background: #8A2BE2;
+            color: white;
+        }
+        
+        .quantity-input {
+            width: 40px;
+            text-align: center;
+            background: rgba(15, 15, 25, 0.5);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            border-radius: 4px;
+            color: white;
+            padding: 0.25rem;
+        }
+        
+        .discount-section {
+            background: rgba(15, 15, 25, 0.5);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .discount-input {
             width: 100%;
-            background: rgba(10, 10, 18, 0.9);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 15px 5%;
+            padding: 0.5rem;
+            background: rgba(15, 15, 25, 0.7);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            border-radius: 6px;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+        
+        .discount-btn {
+            width: 100%;
+            padding: 0.5rem;
+            background: linear-gradient(45deg, #8A2BE2, #00BFFF);
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .discount-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.3);
+        }
+        
+        .discount-applied {
+            color: #00ff7f;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            text-align: center;
+        }
+        
+        .cart-summary {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(0, 119, 255, 0.2);
-            animation: slideDown 0.8s ease-out;
+            margin-top: 0.5rem;
         }
-
-        @keyframes slideDown {
-            from { transform: translateY(-100%); }
-            to { transform: translateY(0); }
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo-circle {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: url('https://i.postimg.cc/j2YhVqtd/professor-ayan.png') center/cover;
-            border: 2px solid var(--electric-blue);
-            box-shadow: var(--box-shadow-glow);
-            animation: pulse 4s infinite;
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(0, 119, 255, 0.5); }
-            70% { box-shadow: 0 0 0 15px rgba(0, 119, 255, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(0, 119, 255, 0); }
-        }
-
-        .logo-text {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            font-size: 1.4rem;
-            background: linear-gradient(45deg, var(--electric-blue), var(--soft-gold));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: textGlow 3s infinite alternate;
-        }
-
-        @keyframes textGlow {
-            0% { text-shadow: 0 0 5px rgba(0, 119, 255, 0.3); }
-            100% { text-shadow: 0 0 15px rgba(0, 119, 255, 0.7), 0 0 25px rgba(255, 215, 0, 0.4); }
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-
-        nav a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.1rem;
-            position: relative;
-            padding: 5px 0;
-            transition: var(--transition);
-        }
-
-        nav a::after {
-            content: '';
+        
+        .cart-save {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--electric-blue);
-            transition: var(--transition);
+            top: -10px;
+            right: -10px;
+            background: #00ff7f;
+            color: #000;
+            font-size: 0.7rem;
+            font-weight: bold;
+            padding: 0.25rem 0.5rem;
+            border-radius: 20px;
+            animation: pulse 1.5s infinite;
         }
-
-        nav a:hover {
-            color: var(--electric-blue);
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--text-light);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        /* Page Container */
-        .page-container {
-            display: none;
-            min-height: 100vh;
-            padding: 120px 5% 100px;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 0.6s forwards;
-        }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .page-container.active {
-            display: block;
-        }
-
-        /* Home Page */
-        .hero {
-            text-align: center;
-            max-width: 900px;
-            margin: 0 auto 80px;
-            padding: 40px 0;
-        }
-
-        .hero h1 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            line-height: 1.2;
-            background: linear-gradient(45deg, var(--text-light), var(--electric-blue-light));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: titleEntrance 1s ease-out;
-        }
-
-        @keyframes titleEntrance {
-            0% { letter-spacing: 20px; opacity: 0; }
-            100% { letter-spacing: normal; opacity: 1; }
-        }
-
-        .hero p {
-            font-size: 1.4rem;
-            color: var(--text-muted);
-            max-width: 700px;
-            margin: 0 auto 40px;
-            line-height: 1.6;
-        }
-
-        .cta-btn {
-            display: inline-block;
-            background: linear-gradient(45deg, var(--electric-blue), var(--deep-blue));
+        
+        .cart-notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #8A2BE2, #00BFFF);
             color: white;
-            padding: 16px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.2rem;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-            box-shadow: var(--box-shadow);
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .cta-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, var(--deep-red), var(--soft-gold));
-            transition: var(--transition);
-            z-index: -1;
-        }
-
-        .cta-btn:hover::before {
-            left: 0;
-        }
-
-        .cta-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-        }
-
-        .services {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-            position: relative;
-        }
-
-        .section-title h2 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 2.5rem;
-            display: inline-block;
-            position: relative;
-            padding-bottom: 15px;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: var(--electric-blue);
-            border-radius: 2px;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .service-card {
-            background: rgba(20, 20, 35, 0.6);
-            border-radius: var(--border-radius);
-            padding: 30px;
-            text-align: center;
-            transition: var(--transition);
-            border: 1px solid rgba(0, 119, 255, 0.2);
-            position: relative;
-            overflow: hidden;
-            transform: translateY(50px);
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(138, 43, 226, 0.4);
+            z-index: 100;
+            transform: translateY(100px);
             opacity: 0;
-            animation: cardEntrance 0.6s forwards;
-        }
-
-        @keyframes cardEntrance {
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .service-card:nth-child(2) { animation-delay: 0.1s; }
-        .service-card:nth-child(3) { animation-delay: 0.2s; }
-        .service-card:nth-child(4) { animation-delay: 0.3s; }
-        .service-card:nth-child(5) { animation-delay: 0.4s; }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--box-shadow-glow);
-            border-color: var(--electric-blue);
-            background: rgba(25, 25, 45, 0.8);
-        }
-
-        .service-icon {
-            width: 80px;
-            height: 80px;
-            background: rgba(0, 119, 255, 0.1);
-            border-radius: 50%;
+            transition: all 0.5s ease;
             display: flex;
             align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 2rem;
-            color: var(--electric-blue);
-            transition: var(--transition);
+            gap: 10px;
         }
-
-        .service-card:hover .service-icon {
-            background: var(--electric-blue);
-            color: white;
-            transform: rotateY(360deg);
-        }
-
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--text-light);
-        }
-
-        .service-card p {
-            color: var(--text-muted);
-            line-height: 1.6;
-        }
-
-        /* About Page */
-        .about-content {
-            max-width: 900px;
-            margin: 0 auto;
-            background: rgba(20, 20, 35, 0.6);
-            border-radius: var(--border-radius);
-            padding: 50px;
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            box-shadow: var(--box-shadow);
-        }
-
-        .about-text {
-            line-height: 1.8;
-            font-size: 1.1rem;
-        }
-
-        .about-text p {
-            margin-bottom: 25px;
-            position: relative;
-            padding-left: 30px;
-            transform: translateX(-20px);
-            opacity: 0;
-            animation: slideIn 0.5s forwards;
-        }
-
-        @keyframes slideIn {
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        .about-text p::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            color: var(--soft-gold);
-            font-size: 1.5rem;
-        }
-
-        .highlight {
-            background: linear-gradient(transparent 60%, rgba(0, 119, 255, 0.3) 40%);
-            font-weight: 500;
-        }
-
-        /* Order Page */
-        .order-container {
-            max-width: 700px;
-            margin: 0 auto;
-            background: rgba(20, 20, 35, 0.6);
-            border-radius: var(--border-radius);
-            padding: 50px;
-            border: 1px solid rgba(0, 119, 255, 0.2);
-            box-shadow: var(--box-shadow);
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: var(--text-light);
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 15px;
-            background: rgba(30, 30, 50, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            color: var(--text-light);
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--electric-blue);
-            box-shadow: var(--box-shadow-glow);
-        }
-
-        select.form-control {
-            appearance: none;
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230077ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-            background-repeat: no-repeat;
-            background-position: right 15px center;
-            background-size: 16px;
-        }
-
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        .submit-btn {
-            background: linear-gradient(45deg, var(--electric-blue), var(--deep-blue));
-            color: white;
-            border: none;
-            padding: 16px 40px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: var(--transition);
-            display: block;
-            width: 100%;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .submit-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, var(--deep-red), var(--soft-gold));
-            transition: var(--transition);
-            z-index: -1;
-        }
-
-        .submit-btn:hover::before {
-            left: 0;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-        }
-
-        .confirmation {
-            display: none;
-            text-align: center;
-            padding: 50px;
-            background: rgba(20, 20, 35, 0.8);
-            border-radius: var(--border-radius);
-            border: 1px solid var(--electric-blue);
-            box-shadow: var(--box-shadow-glow);
-            animation: fadeIn 0.5s;
-        }
-
-        .confirmation-logo {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: url('https://i.postimg.cc/j2YhVqtd/professor-ayan.png') center/cover;
-            margin: 0 auto 20px;
-            border: 2px solid var(--electric-blue);
-            box-shadow: var(--box-shadow-glow);
-            animation: pulse 2s infinite;
-        }
-
-        .confirmation h3 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: var(--electric-blue);
-        }
-
-        .confirmation p {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            line-height: 1.6;
-        }
-
-        /* Contact Page */
-        .contact-container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .contact-card {
-            background: rgba(20, 20, 35, 0.6);
-            border-radius: var(--border-radius);
-            padding: 30px;
-            text-align: center;
-            transition: var(--transition);
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            position: relative;
-            overflow: hidden;
-            transform: scale(0.9);
-            opacity: 0;
-            animation: scaleIn 0.5s forwards;
-        }
-
-        @keyframes scaleIn {
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        .contact-card:nth-child(2) { animation-delay: 0.1s; }
-        .contact-card:nth-child(3) { animation-delay: 0.2s; }
-        .contact-card:nth-child(4) { animation-delay: 0.3s; }
-
-        .contact-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--box-shadow-glow-gold);
-            border-color: var(--soft-gold);
-            background: rgba(25, 25, 45, 0.8);
-        }
-
-        .contact-icon {
-            width: 70px;
-            height: 70px;
-            background: rgba(255, 215, 0, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 1.8rem;
-            color: var(--soft-gold);
-            transition: var(--transition);
-        }
-
-        .contact-card:hover .contact-icon {
-            background: var(--soft-gold);
-            color: var(--dark-bg);
-            transform: rotateY(360deg);
-        }
-
-        .contact-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            color: var(--text-light);
-        }
-
-        .contact-info {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            line-height: 1.6;
-            transition: var(--transition);
-        }
-
-        .contact-card:hover .contact-info {
-            color: var(--light-gold);
-        }
-
-        .contact-info a {
-            color: var(--electric-blue);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .contact-info a:hover {
-            color: var(--electric-blue-light);
-            text-decoration: underline;
-        }
-
-        /* Footer */
-        footer {
-            background: rgba(7, 7, 14, 0.9);
-            padding: 40px 5%;
-            text-align: center;
-            border-top: 1px solid rgba(0, 119, 255, 0.2);
-            position: relative;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .footer-logo {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: url('https://i.postimg.cc/j2YhVqtd/professor-ayan.png') center/cover;
-            margin-bottom: 20px;
-            border: 2px solid var(--electric-blue);
-            box-shadow: var(--box-shadow-glow);
-        }
-
-        .copyright {
-            color: var(--text-muted);
-            font-size: 1rem;
-            margin-top: 20px;
-        }
-
-        /* Animations */
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .animate-on-scroll.animated {
-            opacity: 1;
+        
+        .cart-notification.show {
             transform: translateY(0);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 3rem;
-            }
-            
-            .about-content, .order-container {
-                padding: 30px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            header {
-                padding: 15px;
-            }
-            
-            .logo-text {
-                font-size: 1.2rem;
-            }
-            
-            nav {
-                position: fixed;
-                top: 80px;
-                left: 0;
-                width: 100%;
-                background: var(--darker-bg);
-                padding: 20px;
-                transform: translateY(-150%);
-                transition: transform 0.4s ease;
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            }
-            
-            nav.active {
-                transform: translateY(0);
-            }
-            
-            nav ul {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.2rem;
-            }
-            
-            .section-title h2 {
-                font-size: 2rem;
-            }
-            
-            .page-container {
-                padding: 100px 15px 80px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            .service-card, .contact-card {
-                padding: 20px;
-            }
-            
-            .about-content, .order-container {
-                padding: 25px 20px;
-            }
+            opacity: 1;
         }
     </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif']
+                    },
+                    colors: {
+                        dark: '#0a0a0a',
+                        darker: '#050505',
+                        card: '#151515',
+                        primary: '#8A2BE2',
+                        secondary: '#00BFFF',
+                        accent: '#FFD700',
+                        light: '#f0f0f0',
+                        gray: '#b0b0b0'
+                    },
+                    animation: {
+                        'float': 'float 15s infinite ease-in-out',
+                        'float-2': 'float 12s infinite ease-in-out 1s',
+                        'float-3': 'float 18s infinite ease-in-out 2s',
+                        'pulse': 'pulse 1.5s infinite',
+                        'fadeIn': 'fadeIn 0.7s ease-out forwards',
+                        'slideIn': 'slideIn 0.7s ease-out forwards',
+                        'bounce': 'bounce 1.5s infinite',
+                        'tada': 'tada 1.5s',
+                        'flip': 'flip 1.5s',
+                        'zoomIn': 'zoomIn 0.7s',
+                        'glow': 'glow 3s infinite',
+                        'wave': 'wave 2s infinite',
+                        'gradientBG': 'gradientBG 15s ease infinite'
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body>
-    <!-- Animated Background Particles -->
-    <div class="particles" id="particles"></div>
+<body class="text-light font-inter min-h-screen relative overflow-x-hidden">
+    <!-- Background gradient overlay -->
+    <div class="fixed inset-0 bg-gradient-to-br from-purple-900/10 via-dark/90 to-dark/90 -z-10"></div>
     
-    <!-- Header -->
-    <header>
-        <div class="logo">
-            <div class="logo-circle"></div>
-            <div class="logo-text">Professor Ayan Store</div>
-        </div>
-        
-        <button class="mobile-menu-btn" id="menuBtn">
-            <i class="fas fa-bars"></i>
-        </button>
-        
-        <nav id="mainNav">
-            <ul>
-                <li><a href="#" class="nav-link" data-page="home">Home</a></li>
-                <li><a href="#" class="nav-link" data-page="about">About</a></li>
-                <li><a href="#" class="nav-link" data-page="order">Order</a></li>
-                <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-    
-    <!-- Home Page -->
-    <section id="home" class="page-container active">
-        <div class="hero">
-            <h1>Welcome to Professor Ayan Store</h1>
-            <p>Turning Digital Skills into Creative Solutions</p>
-            <a href="#" class="cta-btn" data-page="order">Place an Order</a>
-        </div>
-        
-        <div class="services">
-            <div class="section-title animate-on-scroll">
-                <h2>Our Services</h2>
-            </div>
-            
-            <div class="services-grid">
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">
-                        <i class="fas fa-drafting-compass"></i>
-                    </div>
-                    <h3>Logo Design</h3>
-                    <p>Unique and memorable logos that represent your brand identity and values.</p>
-                </div>
-                
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">
-                        <i class="fas fa-image"></i>
-                    </div>
-                    <h3>Banner & Poster</h3>
-                    <p>Eye-catching designs for digital and print media that capture attention.</p>
-                </div>
-                
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <h3>Portfolio Websites</h3>
-                    <p>Professional online portfolios to showcase your work and talents.</p>
-                </div>
-                
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">
-                        <i class="fas fa-shopping-cart"></i>
-                    </div>
-                    <h3>E-commerce Stores</h3>
-                    <p>Fully functional online stores with secure payment processing.</p>
-                </div>
-                
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">
-                        <i class="fas fa-video"></i>
-                    </div>
-                    <h3>Video Editing</h3>
-                    <p>Professional video editing services for all your content needs.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- About Page -->
-    <section id="about" class="page-container">
-        <div class="section-title">
-            <h2>About Professor Ayan</h2>
-        </div>
-        
-        <div class="about-content">
-            <div class="about-text">
-               <p>I am Professor Ayan, a passionate web developer, graphic designer, freelancer, ethical hacker, and digital content creator.</p>
-<p>My journey blends creativity with code and innovation with design.</p>
-<p>I've built websites, brands, and content for clients across various industries.</p>
-<p>Whether it's a logo, e-commerce store, or a secure portfolio — I craft it to perform.</p>
-<p>I believe in delivering quality, functionality, and creativity together.</p>
-<p>Clients trust me for my fast, friendly service and long-term commitment.</p>
-<p>My projects are secure, responsive, and visually engaging.</p>
-<p>I keep learning and evolving with design trends and development stacks.</p>
-<p>Explore my portfolio here: <a href="https://proxayan.vercel.app" target="_blank">proxayan.vercel.app</a></p>
-<p>Let's create something amazing for your business or brand.</p>
+    <!-- Floating shapes -->
+    <div class="fixed inset-0 pointer-events-none -z-10">
+        <div class="absolute w-72 h-72 rounded-full bg-primary/30 blur-xl top-[10%] left-[5%] floating-shape"></div>
+        <div class="absolute w-48 h-48 rounded-full bg-secondary/30 blur-xl bottom-[15%] right-[10%] floating-shape-2"></div>
+        <div class="absolute w-36 h-36 rounded-full bg-accent/30 blur-xl top-[40%] right-[20%] floating-shape-3"></div>
+        <div class="absolute w-60 h-60 rounded-full bg-primary/20 blur-xl bottom-[25%] left-[15%] floating-shape"></div>
+        <div class="absolute w-40 h-40 rounded-full bg-secondary/20 blur-xl top-[20%] right-[15%] floating-shape-2"></div>
+    </div>
 
+    <!-- Header -->
+    <header class="fixed top-0 w-full py-4 px-5 lg:px-16 bg-dark/95 backdrop-blur-md border-b border-primary/20 z-50 transition-all duration-300">
+        <div class="flex justify-between items-center max-w-7xl mx-auto">
+            <!-- Logo -->
+            <div class="flex items-center gap-3 fade-in">
+                <div class="w-12 h-12 rounded-full bg-[url('https://i.postimg.cc/j2YhVqtd/professor-ayan.png')] bg-cover border-2 border-primary shadow-lg shadow-primary/50 pulse-icon"></div>
+                <span class="text-2xl font-bold gradient-text font-poppins">Professor Ayan</span>
             </div>
-        </div>
-    </section>
-    
-    <!-- Order Page -->
-    <section id="order" class="page-container">
-        <div class="section-title">
-            <h2>Place Your Order</h2>
-        </div>
-        
-        <div class="order-container">
-            <form id="orderForm" action="https://formspree.io/f/xanbqwgq" method="POST">
-                <div class="form-group">
-                    <label for="fullName">Full Name</label>
-                    <input type="text" id="fullName" name="fullName" class="form-control" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" class="form-control" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" name="phone" class="form-control" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="product">Select Product</label>
-                    <select id="product" name="product" class="form-control" required>
-                        <option value="" disabled selected>Select a product</option>
-                        <option value="Logo">Logo Design</option>
-                        <option value="Banner">Banner Design</option>
-                        <option value="Thumbnail">Thumbnail Design</option>
-                        <option value="Poster">Poster Design</option>
-                        <option value="Portfolio">Portfolio Website</option>
-                        <option value="E-commerce">E-commerce Website</option>
-                        <option value="Online Store">Online Store</option>
-                        <option value="Video Editing">Video Editing</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="message">Additional Details (Optional)</label>
-                    <textarea id="message" name="message" class="form-control"></textarea>
-                </div>
-                
-                <button type="submit" class="submit-btn">Submit Order</button>
-            </form>
             
-            <div class="confirmation" id="confirmation">
-                <div class="confirmation-logo"></div>
-                <h3>Thank You!</h3>
-                <p>Your order has been submitted successfully. You'll be contacted shortly.</p>
-            </div>
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="#home" class="text-light hover:text-primary transition-all duration-300 relative group">
+                    Home
+                    <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-3/4"></span>
+                </a>
+                <a href="#about" class="text-light hover:text-primary transition-all duration-300 relative group">
+                    About
+                    <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-3/4"></span>
+                </a>
+                <a href="#services" class="text-light hover:text-primary transition-all duration-300 relative group">
+                    Services
+                    <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-3/4"></span>
+                </a>
+                <a href="#contact" class="text-light hover:text-primary transition-all duration-300 relative group">
+                    Contact
+                    <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-3/4"></span>
+                </a>
+                
+                <!-- Enhanced Cart Icon -->
+                <div class="relative cursor-pointer ml-4 fade-in" id="cartIcon">
+                    <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center hover:bg-primary/30 transition-colors duration-300 floating-cart">
+                        <i class="fas fa-shopping-cart text-xl text-primary"></i>
+                    </div>
+                    <span class="absolute -top-1 -right-1 bg-primary text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center cart-badge" id="cartCount">0</span>
+                </div>
+            </nav>
+            
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-2xl text-light fade-in" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
-    </section>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="fixed inset-0 bg-dark/95 backdrop-blur-md z-40 flex flex-col items-center justify-center transition-all duration-300 transform -translate-y-full" id="mobileNav">
+        <button class="absolute top-8 right-8 text-3xl text-light" id="closeMenu">
+            <i class="fas fa-times"></i>
+        </button>
+        <nav class="flex flex-col items-center gap-8 text-center">
+            <a href="#home" class="text-2xl text-light hover:text-primary transition-colors duration-300">Home</a>
+            <a href="#about" class="text-2xl text-light hover:text-primary transition-colors duration-300">About</a>
+            <a href="#services" class="text-2xl text-light hover:text-primary transition-colors duration-300">Services</a>
+            <a href="#contact" class="text-2xl text-light hover:text-primary transition-colors duration-300">Contact</a>
+        </nav>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="fixed inset-0 bg-black/70 backdrop-blur-sm z-40 opacity-0 invisible transition-all duration-300" id="cartOverlay"></div>
+    <div class="fixed top-0 right-0 h-full w-full md:w-96 bg-darker shadow-2xl border-l border-primary/20 z-50 transition-all duration-300 translate-x-full" id="cartSidebar">
+        <div class="p-6 h-full flex flex-col">
+            <!-- Cart Header -->
+            <div class="flex justify-between items-center pb-4 border-b border-gray-800 mb-6">
+                <h3 class="text-xl font-bold font-poppins flex items-center gap-2">
+                    <i class="fas fa-shopping-cart text-primary"></i>
+                    Your Cart
+                </h3>
+                <button class="text-xl text-light hover:text-primary transition-colors duration-300" id="closeCart">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <!-- Cart Items -->
+            <div class="flex-1 overflow-y-auto scroll-hidden" id="cartItems">
+                <!-- Cart items will be added here dynamically -->
+                <p class="text-gray-500 text-center py-10">Your cart is empty</p>
+            </div>
+            
+            <!-- Discount Section -->
+            <div class="discount-section">
+                <input type="text" class="discount-input" id="discountCode" placeholder="Enter discount code">
+                <button class="discount-btn" id="applyDiscount">Apply Discount</button>
+                <div id="discountMessage" class="discount-applied"></div>
+            </div>
+            
+            <!-- Cart Summary -->
+            <div class="py-4 border-t border-gray-800 mb-4">
+                <div class="cart-summary">
+                    <span>Subtotal:</span>
+                    <span id="cartSubtotal">PKR 0</span>
+                </div>
+                <div class="cart-summary">
+                    <span>Discount:</span>
+                    <span id="cartDiscount">PKR 0</span>
+                </div>
+                <div class="cart-summary font-bold text-lg">
+                    <span>Total:</span>
+                    <span class="text-primary" id="cartTotal">PKR 0</span>
+                </div>
+            </div>
+            
+            <!-- Checkout Button -->
+            <button class="w-full py-3 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 flex items-center justify-center gap-2 relative" id="checkoutButton">
+                <i class="fas fa-lock"></i>
+                Secure Checkout
+                <div class="cart-save hidden" id="cartSave">SAVING: PKR 0</div>
+            </button>
+        </div>
+    </div>
     
-    <!-- Contact Page -->
-    <section id="contact" class="page-container">
-        <div class="section-title">
-            <h2>Contact Information</h2>
+    <!-- Floating Cart Notification -->
+    <div class="cart-notification" id="cartNotification">
+        <i class="fas fa-check-circle text-xl"></i>
+        <div>
+            <div class="font-bold">Item added to cart!</div>
+            <div class="text-sm">View your cart to proceed</div>
+        </div>
+    </div>
+
+    <!-- Floating Cart Button (Mobile) -->
+    <div class="fixed bottom-6 right-6 z-30 md:hidden">
+        <div class="relative cursor-pointer" id="mobileCartIcon">
+            <div class="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg shadow-primary/30 floating-cart">
+                <i class="fas fa-shopping-cart text-xl text-white"></i>
+            </div>
+            <span class="absolute -top-1 -right-1 bg-accent text-dark text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center cart-badge" id="mobileCartCount">0</span>
+        </div>
+    </div>
+
+    <!-- Home Section -->
+    <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center px-5 pt-24 pb-16 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto z-10 slide-in">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-poppins leading-tight mb-6 gradient-text">
+                Welcome to Professor Ayan Store
+            </h1>
+            <p class="text-xl sm:text-2xl text-gray-400 mb-10 max-w-2xl mx-auto">
+                Your Creative & Digital Partner for Exceptional Solutions
+            </p>
+            <a href="#services" class="inline-block px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-full shadow-lg hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group zoom-in">
+                <span class="relative z-10">Explore Services</span>
+                <span class="absolute inset-0 bg-gradient-to-r from-secondary to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+            </a>
         </div>
         
-        <div class="contact-container">
-            <div class="contact-grid">
-                <div class="contact-card">
-                    <div class="contact-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <h3>Email</h3>
-                    <div class="contact-info">
-                        <p>professorayanxoffical@gmail.com</p>
-                        <p>ayanxhacker@gmail.com</p>
-                    </div>
+        <!-- Animated floating icons -->
+        <div class="absolute bottom-20 left-5 w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center rotate-hover floating-icon">
+            <i class="fas fa-mouse text-primary text-xl"></i>
+        </div>
+        <div class="absolute top-1/4 right-10 w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center rotate-hover floating-icon">
+            <i class="fas fa-paint-brush text-primary text-2xl"></i>
+        </div>
+        <div class="absolute bottom-1/3 left-1/4 w-14 h-14 rounded-full bg-primary/20 flex items-center justify-center rotate-hover floating-icon">
+            <i class="fas fa-code text-primary text-xl"></i>
+        </div>
+        <div class="absolute top-1/3 left-1/3 w-16 h-16 rounded-full bg-secondary/20 flex items-center justify-center rotate-hover floating-icon">
+            <i class="fas fa-video text-secondary text-2xl"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="min-h-screen flex flex-col justify-center items-center px-5 py-16 bg-gradient-to-b from-dark/80 to-darker/90">
+        <div class="max-w-4xl mx-auto text-center fade-in">
+            <h2 class="text-3xl sm:text-4xl font-bold font-poppins mb-12 relative inline-block">
+                About Me
+                <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-1 w-16 bg-gradient-to-r from-primary to-secondary rounded-full"></span>
+            </h2>
+            
+            <div class="glass-effect rounded-2xl p-6 sm:p-8 shadow-xl">
+                <div class="flex justify-center mb-6">
+                    <div class="w-32 h-32 rounded-full bg-[url('https://i.postimg.cc/j2YhVqtd/professor-ayan.png')] bg-cover border-4 border-primary/50 shadow-lg shadow-primary/30"></div>
                 </div>
                 
-                <div class="contact-card">
-                    <div class="contact-icon">
-                        <i class="fas fa-phone"></i>
-                    </div>
-                    <h3>Phone</h3>
-                    <div class="contact-info">
-                        <p>+92 336 0184916</p>
-                    </div>
-                </div>
+                <p class="text-gray-400 leading-relaxed mb-4">
+                    I am Professor Ayan, a passionate web developer, graphic designer, freelancer, ethical hacker, and digital content creator.
+                </p>
+                <p class="text-gray-400 leading-relaxed mb-4">
+                    My journey blends creativity with code and innovation with design. I've built websites, brands, and content for clients across various industries.
+                </p>
+                <p class="text-gray-400 leading-relaxed mb-4">
+                    Whether it's a logo, e-commerce store, or business card — I craft it to perform. I believe in delivering quality, functionality, and creativity together.
+                </p>
+                <p class="text-gray-400 leading-relaxed mb-4">
+                    Clients trust me for my fast, friendly service and long-term commitment. My projects are secure, responsive, and visually engaging.
+                </p>
+                <p class="text-gray-400 leading-relaxed mb-6">
+                    I keep evolving with design trends, frameworks, and business needs.
+                </p>
                 
-                <div class="contact-card">
-                    <div class="contact-icon">
-                        <i class="fab fa-instagram"></i>
-                    </div>
-                    <h3>Instagram</h3>
-                    <div class="contact-info">
-                        <p>@ayanxhacker</p>
-                    </div>
-                </div>
-                
-                <div class="contact-card">
-                    <div class="contact-icon">
-                        <i class="fab fa-facebook"></i>
-                    </div>
-                    <h3>Facebook</h3>
-                    <div class="contact-info">
-                        <a href="https://www.facebook.com/profile.php?id=61578282752875&sk=photos" target="_blank">Professor Ayan Store</a>
-                    </div>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="https://proxayan.vercel.app" target="_blank" class="px-6 py-3 border border-primary/30 text-primary rounded-lg hover:bg-primary/10 transition-colors duration-300 flex items-center justify-center gap-2">
+                        <i class="fas fa-external-link-alt"></i>
+                        View Portfolio
+                    </a>
+                    <a href="#contact" class="px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 flex items-center justify-center gap-2">
+                        <i class="fas fa-paper-plane"></i>
+                        Get in Touch
+                    </a>
                 </div>
             </div>
         </div>
     </section>
-    
+
+    <!-- Services Section -->
+    <section id="services" class="min-h-screen py-16 px-5 bg-gradient-to-b from-darker/90 to-dark/80">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl sm:text-4xl font-bold font-poppins mb-16 text-center relative inline-block fade-in">
+                Our Services
+                <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-1 w-16 bg-gradient-to-r from-primary to-secondary rounded-full"></span>
+            </h2>
+            
+            <!-- Design Services -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold font-poppins mb-6 text-accent flex items-center gap-3 fade-in">
+                    <i class="fas fa-paint-brush"></i>
+                    Design Services
+                </h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Logo Design -->
+                    <div class="service-card service-card-3d bg-card rounded-xl overflow-hidden border border-gray-800 hover:border-primary/50 transition-all duration-300 card-1 fade-in">
+                        <div class="card-content p-5 border-b border-gray-800">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                                    <i class="fas fa-drafting-compass text-primary"></i>
+                                </div>
+                                <h4 class="text-xl font-bold">Logo Design</h4>
+                            </div>
+                            <p class="text-primary">PKR 2,000 – 5,000</p>
+                        </div>
+                        <div class="card-content p-5">
+                            <button class="w-full py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:shadow-md hover:shadow-primary/20 transition-all duration-300 add-to-cart" data-service="Logo Design" data-price="2000-5000">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Banner Design -->
+                    <div class="service-card service-card-3d bg-card rounded-xl overflow-hidden border border-gray-800 hover:border-primary/50 transition-all duration-300 card-2 fade-in">
+                        <div class="card-content p-5 border-b border-gray-800">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                                    <i class="fas fa-image text-primary"></i>
+                                </div>
+                                <h4 class="text-xl font-bold">Banner Design</h4>
+                            </div>
+                            <p class="text-primary">PKR 1,500 – 3,000</p>
+                        </div>
+                        <div class="card-content p-5">
+                            <button class="w-full py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:shadow-md hover:shadow-primary/20 transition-all duration-300 add-to-cart" data-service="Banner Design" data-price="1500-3000">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Poster Design -->
+                    <div class="service-card service-card-3d bg-card rounded-xl overflow-hidden border border-gray-800 hover:border-primary/50 transition-all duration-300 card-3 fade-in">
+                        <div class="card-content p-5 border-b border-gray-800">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                                    <i class="fas fa-newspaper text-primary"></i>
+                                </div>
+                                <h4 class="text-xl font-bold">Poster Design</h4>
+                            </div>
+                            <p class="text-primary">PKR 1,500 – 3,000</p>
+                        </div>
+                        <div class="card-content p-5">
+                            <button class="w-full py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:shadow-md hover:shadow-primary/20 transition-all duration-300 add-to-cart" data-service="Poster Design" data-price="1500-3000">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Visiting Card Design -->
+                    <div class="service-card service-card-3d bg-card rounded-xl overflow-hidden border border-gray-800 hover:border-primary/50 transition-all duration-300 card-4 fade-in">
+                        <div class="card-content p-5 border-b border-gray-800">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                                    <i class="fas fa-id-card text-primary"></i>
+                                </div>
+                                <h4 class="text-xl font-bold">Visiting Card Design</h4>
+                            </div>
+                            <p class="text-primary">PKR 800 – 2,000</p>
+                        </div>
+                        <div class="card-content p-5">
+                            <button class="w-full py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:shadow-md hover:shadow-primary/20 transition-all duration-300 add-to-cart" data-service="Visiting Card Design" data-price="800-2000">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Business Card Design -->
+                    <div class="service-card service-card-3d bg-card rounded-xl overflow-hidden border border-gray-800 hover:border-primary/50 transition-all duration-300 card-5 fade-in">
+                        <div class="card-content p-5 border-b border-gray-800">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                                    <i class="fas fa-address-card text-primary"></i>
+                                </div>
+                                <h4 class="text-xl font-bold">Business Card Design</h4>
+                            </div>
+                            <p class="text-primary">PKR 1,000 – 2,500</p>
+                        </div>
+                        <div class="card-content p-5">
+                            <button class="w-full py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:shadow-md hover:shadow-primary/20 transition-all duration-300 add-to-cart" data-service="Business Card Design" data-price="1000-2500">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Business Logo Design -->
+                    <div class="service-card service-card-3d bg-card rounded-xl overflow-hidden border border-gray-800 hover:border-primary/50 transition-all duration-300 card-6 fade-in">
+                        <div class="card-content p-5 border-b border-gray-800">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                                    <i class="fas fa-building text-primary"></i>
+                                </div>
+                                <h4 class="text-xl font-bold">Business Logo Design</h4>
+                            </div>
+                            <p class="text-primary">PKR 3,000 – 6,000</p>
+                        </div>
+                        <div class="card-content p-5">
+                            <button class="w-full py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:shadow-md hover:shadow-primary/20 transition-all duration-300 add-to-cart" data-service="Business Logo Design" data-price="3000-6000">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Development Services -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold font-poppins mb-6 text-accent flex items-center gap-3 fade-in">
+                    <i class="fas fa-code"></i>
+                    Development Services
+                </h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Portfolio Website -->
+                    <div class="service-card service-card-3d bg-card rounded-xl overflow-hidden border border-gray-800 hover:border-primary/50 transition-all duration-300 card-1 fade-in">
+                        <div class="card-content p-5 border-b border-gray-800">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                                    <i class="fas fa-laptop-code text-primary"></i>
+                                </div>
+                                <h4 class="text-xl font-bold">Portfolio Website</h4>
+                            </div>
+                            <p class="text-primary">PKR 6,000 – 12,000</p>
+                        </div>
+                        <div class="card-content p-5">
+                            <button class="w-full py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:shadow-md hover:shadow-primary/20 transition-all duration-300 add-to-cart" data-service="Portfolio Website (HTML-based)" data-price="6000-12000">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- E-Commerce Website -->
+                    <div class="service-card service-card-3d bg-card rounded-xl overflow-hidden border border-gray-800 hover:border-primary/50 transition-all duration-300 card-2 fade-in">
+                        <div class="card-content p-5 border-b border-gray-800">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                                    <i class="fas fa-shopping-cart text-primary"></i>
+                                </div>
+                                <h4 class="text-xl font-bold">E-Commerce Website</h4>
+                            </div>
+                            <p class="text-primary">PKR 15,000 – 35,000</p>
+                        </div>
+                        <div class="card-content p-5">
+                            <button class="w-full py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:shadow-md hover:shadow-primary/20 transition-all duration-300 add-to-cart" data-service="E-Commerce Website" data-price="15000-35000">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Online Store -->
+                    <div class="service-card service-card-3d bg-card rounded-xl overflow-hidden border border-gray-800 hover:border-primary/50 transition-all duration-300 card-3 fade-in">
+                        <div class="card-content p-5 border-b border-gray-800">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                                    <i class="fas fa-store text-primary"></i>
+                                </div>
+                                <h4 class="text-xl font-bold">Online Store</h4>
+                            </div>
+                            <p class="text-primary">PKR 12,000 – 30,000</p>
+                        </div>
+                        <div class="card-content p-5">
+                            <button class="w-full py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:shadow-md hover:shadow-primary/20 transition-all duration-300 add-to-cart" data-service="Online Store" data-price="12000-30000">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Custom Website -->
+                    <div class="service-card service-card-3d bg-card rounded-xl overflow-hidden border border-gray-800 hover:border-primary/50 transition-all duration-300 card-4 fade-in">
+                        <div class="card-content p-5 border-b border-gray-800">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                                    <i class="fas fa-globe text-primary"></i>
+                                </div>
+                                <h4 class="text-xl font-bold">Custom Website</h4>
+                            </div>
+                            <p class="text-primary">PKR 10,000 – 30,000</p>
+                        </div>
+                        <div class="card-content p-5">
+                            <button class="w-full py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:shadow-md hover:shadow-primary/20 transition-all duration-300 add-to-cart" data-service="Custom Website" data-price="10000-30000">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Content Services -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold font-poppins mb-6 text-accent flex items-center gap-3 fade-in">
+                    <i class="fas fa-video"></i>
+                    Content Services
+                </h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Video Editing -->
+                    <div class="service-card service-card-3d bg-card rounded-xl overflow-hidden border border-gray-800 hover:border-primary/50 transition-all duration-300 card-1 fade-in">
+                        <div class="card-content p-5 border-b border-gray-800">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                                    <i class="fas fa-film text-primary"></i>
+                                </div>
+                                <h4 class="text-xl font-bold">Video Editing</h4>
+                            </div>
+                            <p class="text-primary">PKR 2,000 – 8,000</p>
+                        </div>
+                        <div class="card-content p-5">
+                            <button class="w-full py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:shadow-md hover:shadow-primary/20 transition-all duration-300 add-to-cart" data-service="Video Editing" data-price="2000-8000">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- MS Office Solutions -->
+            <div>
+                <h3 class="text-2xl font-bold font-poppins mb-6 text-accent flex items-center gap-3 fade-in">
+                    <i class="fas fa-file-alt"></i>
+                    MS Office Solutions
+                </h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- MS Word Document Setup -->
+                    <div class="service-card service-card-3d bg-card rounded-xl overflow-hidden border border-gray-800 hover:border-primary/50 transition-all duration-300 card-1 fade-in">
+                        <div class="card-content p-5 border-b border-gray-800">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                                    <i class="fas fa-file-word text-primary"></i>
+                                </div>
+                                <h4 class="text-xl font-bold">MS Word Document Setup</h4>
+                            </div>
+                            <p class="text-primary">PKR 500 – 2,000</p>
+                        </div>
+                        <div class="card-content p-5">
+                            <button class="w-full py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:shadow-md hover:shadow-primary/20 transition-all duration-300 add-to-cart" data-service="MS Word Document Setup" data-price="500-2000">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- MS Excel Reports/Formulas -->
+                    <div class="service-card service-card-3d bg-card rounded-xl overflow-hidden border border-gray-800 hover:border-primary/50 transition-all duration-300 card-2 fade-in">
+                        <div class="card-content p-5 border-b border-gray-800">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                                    <i class="fas fa-file-excel text-primary"></i>
+                                </div>
+                                <h4 class="text-xl font-bold">MS Excel Reports/Formulas</h4>
+                            </div>
+                            <p class="text-primary">PKR 1,000 – 3,500</p>
+                        </div>
+                        <div class="card-content p-5">
+                            <button class="w-full py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:shadow-md hover:shadow-primary/20 transition-all duration-300 add-to-cart" data-service="MS Excel Reports/Formulas" data-price="1000-3500">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- MS PowerPoint Presentations -->
+                    <div class="service-card service-card-3d bg-card rounded-xl overflow-hidden border border-gray-800 hover:border-primary/50 transition-all duration-300 card-3 fade-in">
+                        <div class="card-content p-5 border-b border-gray-800">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                                    <i class="fas fa-file-powerpoint text-primary"></i>
+                                </div>
+                                <h4 class="text-xl font-bold">MS PowerPoint Presentations</h4>
+                            </div>
+                            <p class="text-primary">PKR 1,000 – 4,000</p>
+                        </div>
+                        <div class="card-content p-5">
+                            <button class="w-full py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:shadow-md hover:shadow-primary/20 transition-all duration-300 add-to-cart" data-service="MS PowerPoint Presentations" data-price="1000-4000">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Disclaimer -->
+            <div class="mt-16 p-5 bg-primary/10 rounded-xl border border-primary/20 text-center fade-in">
+                <p class="text-gray-400">
+                    <i class="fas fa-exclamation-circle text-primary mr-2"></i>
+                    Final price depends on project scope. Ayan will confirm via WhatsApp or Email after form submission.
+                </p>
+            </div>
+        </div>
+    </section>
+
+  <!-- Contact Section -->
+<section id="contact" class="min-h-screen py-16 px-5 bg-gradient-to-b from-dark/80 to-darker/90">
+    <div class="max-w-7xl mx-auto">
+        <h2 class="text-3xl sm:text-4xl font-bold font-poppins mb-16 text-center relative inline-block fade-in">
+            Contact & Checkout
+            <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-1 w-16 bg-gradient-to-r from-primary to-secondary rounded-full"></span>
+        </h2>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Contact Information -->
+            <div class="glass-effect rounded-2xl p-8 shadow-xl fade-in">
+                <h3 class="text-2xl font-bold font-poppins mb-6 text-accent">Contact Information</h3>
+                
+                <div class="space-y-5 mb-8">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center mr-4">
+                            <i class="fas fa-envelope text-primary"></i>
+                        </div>
+                        <a href="mailto:professorayanxoffical@gmail.com" class="text-light hover:text-primary transition-colors duration-300">
+                            professorayanxoffical@gmail.com
+                        </a>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center mr-4">
+                            <i class="fas fa-envelope text-primary"></i>
+                        </div>
+                        <a href="mailto:ayanxhacker@gmail.com" class="text-light hover:text-primary transition-colors duration-300">
+                            ayanxhacker@gmail.com
+                        </a>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center mr-4">
+                            <i class="fas fa-phone text-primary"></i>
+                        </div>
+                        <a href="tel:+923360184916" class="text-light hover:text-primary transition-colors duration-300">
+                            +92 336 0184916
+                        </a>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center mr-4">
+                            <i class="fab fa-instagram text-primary"></i>
+                        </div>
+                        <a href="https://instagram.com/ayanxhacker" target="_blank" class="text-light hover:text-primary transition-colors duration-300">
+                            @ayanxhacker
+                        </a>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center mr-4">
+                            <i class="fab fa-facebook text-primary"></i>
+                        </div>
+                        <a href="#" target="_blank" class="text-light hover:text-primary transition-colors duration-300">
+                            View Profile
+                        </a>
+                    </div>
+                </div>
+                
+                <h3 class="text-2xl font-bold font-poppins mb-6 text-accent">Connect With Me</h3>
+                
+                <div class="flex gap-4">
+                    <a href="#" class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-light hover:bg-primary hover:text-white hover:-translate-y-1 transition-all duration-300">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://instagram.com/ayanxhacker" target="_blank" class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-light hover:bg-primary hover:text-white hover:-translate-y-1 transition-all duration-300">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-light hover:bg-primary hover:text-white hover:-translate-y-1 transition-all duration-300">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-light hover:bg-primary hover:text-white hover:-translate-y-1 transition-all duration-300">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-light hover:bg-primary hover:text-white hover:-translate-y-1 transition-all duration-300">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Order Form -->
+            <div class="glass-effect rounded-2xl p-8 shadow-xl fade-in">
+                <h3 class="text-2xl font-bold font-poppins mb-6 text-accent">Place Your Order</h3>
+                
+                <form id="orderForm" action="https://formspree.io/f/xanbqwgq" method="POST">
+                    <div class="mb-5">
+                        <label for="name" class="block font-medium mb-2">Full Name *</label>
+                        <input type="text" id="name" name="name" required class="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-700">
+                    </div>
+                    
+                    <div class="mb-5">
+                        <label for="email" class="block font-medium mb-2">Email *</label>
+                        <input type="email" id="email" name="email" required class="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-700">
+                    </div>
+                    
+                    <div class="mb-5">
+                        <label for="phone" class="block font-medium mb-2">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required class="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-700">
+                    </div>
+                    
+                    <div class="mb-5">
+                        <label class="block font-medium mb-2">Services Selected</label>
+                        <div class="bg-gray-800/50 rounded-lg p-4 max-h-40 overflow-y-auto scroll-hidden" id="selectedServices">
+                            <!-- Selected services will appear here -->
+                            <p class="text-gray-500 text-center py-4">No services selected</p>
+                        </div>
+                        <input type="hidden" id="servicesData" name="services">
+                    </div>
+                    
+                    <!-- Updated Message Label -->
+                    <div class="mb-5">
+                        <label for="message" class="block font-bold mb-2 text-gray-300">Message (Optional)</label>
+                        <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-700"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="w-full py-3 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-700 flex items-center justify-center gap-2">
+                        <i class="fas fa-paper-plane"></i>
+                        Place Order
+                    </button>
+                </form>
+                
+                <!-- Success Message -->
+                <div class="hidden bg-gray-800/50 rounded-xl p-8 text-center border border-green-500/20 mt-8" id="successMessage">
+                    <div class="text-green-500 text-5xl mb-4 pulse-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Order Received Successfully!</h3>
+                    <p class="text-gray-400">
+                     Thank you for your order. You will be contacted shortly to discuss your project details.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
     <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-logo"></div>
-            <p class="copyright">© 2025 Professor Ayan Store. All rights reserved.</p>
+    <footer class="py-12 px-5 lg:px-16 border-t border-primary/20">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Footer Logo -->
+                <div class="flex flex-col fade-in">
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="w-12 h-12 rounded-full bg-[url('https://i.postimg.cc/j2YhVqtd/professor-ayan.png')] bg-cover border-2 border-primary shadow-lg shadow-primary/50"></div>
+                        <span class="text-xl font-bold gradient-text font-poppins">Professor Ayan</span>
+                    </div>
+                    <p class="text-gray-400 mb-5 leading-relaxed">
+                        Professor Ayan Store offers creative design, full-stack websites, video editing, and business tools like MS Office services for startups, professionals, and brands.
+                    </p>
+                    <a href="https://proxayan.vercel.app" target="_blank" class="text-primary font-medium hover:text-secondary transition-colors duration-300">
+                        proxayan.vercel.app
+                    </a>
+                </div>
+                
+                <!-- Footer Links -->
+                <div class="fade-in">
+                    <h3 class="text-xl font-bold font-poppins mb-5">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-gray-400 hover:text-primary transition-colors duration-300">Home</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-primary transition-colors duration-300">About</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-primary transition-colors duration-300">Services</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-primary transition-colors duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Footer Contact -->
+                <div class="fade-in">
+                    <h3 class="text-xl font-bold font-poppins mb-5">Contact Info</h3>
+                    <div class="space-y-3">
+                        <p class="text-gray-400 flex items-center gap-3">
+                            <i class="fas fa-envelope text-primary"></i>
+                            professorayanxoffical@gmail.com
+                        </p>
+                        <p class="text-gray-400 flex items-center gap-3">
+                            <i class="fas fa-phone text-primary"></i>
+                            +92 336 0184916
+                        </p>
+                        <p class="text-gray-400 flex items-center gap-3">
+                            <i class="fab fa-instagram text-primary"></i>
+                            @ayanxhacker
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Copyright -->
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 fade-in">
+                &copy; 2025 Professor Ayan Store. All Rights Reserved.
+            </div>
         </div>
     </footer>
-    
+
     <script>
-        // Initialize particles
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 80;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                
-                // Random size
-                const size = Math.random() * 8 + 2;
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                
-                // Random position
-                const posX = Math.random() * 100;
-                const posY = Math.random() * 100;
-                particle.style.left = `${posX}%`;
-                particle.style.top = `${posY}%`;
-                
-                // Random color
-                const colors = ['#0077ff', '#ff0033', '#ffd700', '#00ffaa'];
-                const color = colors[Math.floor(Math.random() * colors.length)];
-                particle.style.backgroundColor = color;
-                
-                // Random animation duration
-                const duration = Math.random() * 20 + 10;
-                particle.style.animationDuration = `${duration}s`;
-                particle.style.animationDelay = `${Math.random() * 5}s`;
-                
-                particlesContainer.appendChild(particle);
-            }
-        }
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        const closeMenu = document.getElementById('closeMenu');
         
-        // Page navigation
-        function setupNavigation() {
-            const navLinks = document.querySelectorAll('.nav-link');
-            const pages = document.querySelectorAll('.page-container');
-            const menuBtn = document.getElementById('menuBtn');
-            const mainNav = document.getElementById('mainNav');
-            
-            // Switch page function
-            function switchPage(pageId) {
-                pages.forEach(page => {
-                    page.classList.remove('active');
-                    if (page.id === pageId) {
-                        page.classList.add('active');
-                        
-                        // Trigger animations for newly visible elements
-                        setTimeout(() => {
-                            const animElements = page.querySelectorAll('.animate-on-scroll');
-                            animElements.forEach(el => {
-                                el.classList.add('animated');
-                            });
-                        }, 100);
-                    }
-                });
-                
-                // Close mobile menu
-                mainNav.classList.remove('active');
-            }
-            
-            // Nav link click event
-            navLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const pageId = link.getAttribute('data-page');
-                    switchPage(pageId);
-                    
-                    // Scroll to top
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                });
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileNav.classList.remove('translate-y-full');
+            mobileNav.classList.add('translate-y-0');
+        });
+        
+        closeMenu.addEventListener('click', () => {
+            mobileNav.classList.remove('translate-y-0');
+            mobileNav.classList.add('translate-y-full');
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('#mobileNav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('translate-y-0');
+                mobileNav.classList.add('translate-y-full');
             });
-            
-            // Mobile menu toggle
-            menuBtn.addEventListener('click', () => {
-                mainNav.classList.toggle('active');
-            });
-            
-            // Order form submission
-            const orderForm = document.getElementById('orderForm');
-            const confirmation = document.getElementById('confirmation');
-            
-            if (orderForm) {
-                orderForm.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    
-                    // Show loading state
-                    const submitBtn = orderForm.querySelector('button');
-                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-                    submitBtn.disabled = true;
-                    
-                    // Simulate form submission
-                    setTimeout(() => {
-                        // Show confirmation
-                        orderForm.style.display = 'none';
-                        confirmation.style.display = 'block';
-                        
-                        // Reset form
-                        submitBtn.innerHTML = 'Submit Order';
-                        submitBtn.disabled = false;
-                        
-                        // Actually submit form to Formspree
-                        const formData = new FormData(orderForm);
-                        fetch(orderForm.action, {
-                            method: 'POST',
-                            body: formData,
-                            headers: {
-                                'Accept': 'application/json'
-                            }
-                        });
-                    }, 1500);
-                });
-            }
+        });
+        
+        // Cart Functionality
+        const cartIcon = document.getElementById('cartIcon');
+        const mobileCartIcon = document.getElementById('mobileCartIcon');
+        const cartSidebar = document.getElementById('cartSidebar');
+        const closeCart = document.getElementById('closeCart');
+        const cartOverlay = document.getElementById('cartOverlay');
+        const cartItems = document.getElementById('cartItems');
+        const cartCount = document.getElementById('cartCount');
+        const mobileCartCount = document.getElementById('mobileCartCount');
+        const cartSubtotal = document.getElementById('cartSubtotal');
+        const cartDiscount = document.getElementById('cartDiscount');
+        const cartTotal = document.getElementById('cartTotal');
+        const checkoutButton = document.getElementById('checkoutButton');
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        const selectedServices = document.getElementById('selectedServices');
+        const servicesData = document.getElementById('servicesData');
+        const discountCode = document.getElementById('discountCode');
+        const applyDiscount = document.getElementById('applyDiscount');
+        const discountMessage = document.getElementById('discountMessage');
+        const cartSave = document.getElementById('cartSave');
+        const cartNotification = document.getElementById('cartNotification');
+        
+        let cart = [];
+        let discountApplied = false;
+        let discountPercentage = 0;
+        
+        // Load cart from localStorage
+        if (localStorage.getItem('cart')) {
+            cart = JSON.parse(localStorage.getItem('cart'));
+            updateCart();
         }
         
-        // Scroll animations
-        function setupScrollAnimations() {
-            const animElements = document.querySelectorAll('.animate-on-scroll');
-            
-            function checkScroll() {
-                animElements.forEach(el => {
-                    const elementTop = el.getBoundingClientRect().top;
-                    const windowHeight = window.innerHeight;
-                    
-                    if (elementTop < windowHeight * 0.9) {
-                        el.classList.add('animated');
-                    }
-                });
-            }
-            
-            // Initial check
-            checkScroll();
-            
-            // Listen for scroll
-            window.addEventListener('scroll', checkScroll);
-        }
+        // Toggle cart sidebar
+        const openCart = () => {
+            cartSidebar.classList.remove('translate-x-full');
+            cartOverlay.classList.remove('opacity-0', 'invisible');
+            cartOverlay.classList.add('opacity-100', 'visible');
+        };
         
-        // Initialize everything when DOM is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            createParticles();
-            setupNavigation();
-            setupScrollAnimations();
-            
-            // Initialize scroll animations for home page
+        const closeCartSidebar = () => {
+            cartSidebar.classList.add('translate-x-full');
+            cartOverlay.classList.remove('opacity-100', 'visible');
+            cartOverlay.classList.add('opacity-0', 'invisible');
+        };
+        
+        cartIcon.addEventListener('click', openCart);
+        mobileCartIcon.addEventListener('click', openCart);
+        
+        closeCart.addEventListener('click', closeCartSidebar);
+        
+        cartOverlay.addEventListener('click', closeCartSidebar);
+        
+        // Show cart notification
+        function showCartNotification() {
+            cartNotification.classList.add('show');
             setTimeout(() => {
-                const animElements = document.querySelectorAll('.animate-on-scroll');
-                animElements.forEach(el => {
-                    if (el.closest('.page-container.active')) {
-                        el.classList.add('animated');
+                cartNotification.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Add to cart functionality
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const serviceName = button.dataset.service;
+                const priceRange = button.dataset.price;
+                
+                // Check if service already in cart
+                const existingItem = cart.find(item => item.name === serviceName);
+                
+                if (existingItem) {
+                    // Increase quantity
+                    existingItem.quantity += 1;
+                } else {
+                    // Add service to cart
+                    cart.push({
+                        name: serviceName,
+                        price: priceRange,
+                        quantity: 1
+                    });
+                }
+                
+                // Save to localStorage
+                localStorage.setItem('cart', JSON.stringify(cart));
+                
+                // Update cart UI
+                updateCart();
+                
+                // Animate cart icon
+                cartCount.classList.add('animate-pulse');
+                mobileCartCount.classList.add('animate-pulse');
+                setTimeout(() => {
+                    cartCount.classList.remove('animate-pulse');
+                    mobileCartCount.classList.remove('animate-pulse');
+                }, 500);
+                
+                // Animate button
+                button.classList.add('tada');
+                setTimeout(() => {
+                    button.classList.remove('tada');
+                }, 1500);
+                
+                // Show cart notification
+                showCartNotification();
+            });
+        });
+        
+        // Update cart display
+        function updateCart() {
+            // Update cart count
+            const count = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = count;
+            mobileCartCount.textContent = count;
+            
+            // Update cart items
+            cartItems.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p class="text-gray-500 text-center py-10">Your cart is empty</p>';
+                cartSubtotal.textContent = 'PKR 0';
+                cartDiscount.textContent = 'PKR 0';
+                cartTotal.textContent = 'PKR 0';
+                cartSave.classList.add('hidden');
+                return;
+            }
+            
+            // Calculate total
+            let subtotal = 0;
+            
+            cart.forEach((item, index) => {
+                // Extract min price from range
+                const minPrice = parseInt(item.price.split('-')[0]);
+                const itemTotal = minPrice * item.quantity;
+                subtotal += itemTotal;
+                
+                const cartItem = document.createElement('div');
+                cartItem.className = 'py-3 border-b border-gray-800 cart-item-enter';
+                cartItem.innerHTML = `
+                    <div class="flex justify-between">
+                        <span class="font-medium flex-1">${item.name}</span>
+                        <span class="text-primary">PKR ${itemTotal}</span>
+                    </div>
+                    <div class="cart-item-quantity">
+                        <button class="quantity-btn decrease-item" data-index="${index}">
+                            <i class="fas fa-minus text-xs"></i>
+                        </button>
+                        <input type="number" min="1" value="${item.quantity}" class="quantity-input" data-index="${index}">
+                        <button class="quantity-btn increase-item" data-index="${index}">
+                            <i class="fas fa-plus text-xs"></i>
+                        </button>
+                        <button class="ml-auto text-red-500 remove-item" data-index="${index}">
+                            <i class="fas fa-trash text-xs"></i>
+                        </button>
+                    </div>
+                `;
+                cartItems.appendChild(cartItem);
+            });
+            
+            // Update totals
+            calculateTotals(subtotal);
+            
+            // Add event listeners to remove buttons
+            document.querySelectorAll('.remove-item').forEach(button => {
+                button.addEventListener('click', () => {
+                    const index = parseInt(button.dataset.index);
+                    removeItemFromCart(index);
+                });
+            });
+            
+            // Add event listeners to quantity buttons
+            document.querySelectorAll('.decrease-item').forEach(button => {
+                button.addEventListener('click', () => {
+                    const index = parseInt(button.dataset.index);
+                    if (cart[index].quantity > 1) {
+                        cart[index].quantity -= 1;
+                        localStorage.setItem('cart', JSON.stringify(cart));
+                        updateCart();
                     }
                 });
-            }, 500);
+            });
+            
+            document.querySelectorAll('.increase-item').forEach(button => {
+                button.addEventListener('click', () => {
+                    const index = parseInt(button.dataset.index);
+                    cart[index].quantity += 1;
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    updateCart();
+                });
+            });
+            
+            // Add event listeners to quantity inputs
+            document.querySelectorAll('.quantity-input').forEach(input => {
+                input.addEventListener('change', () => {
+                    const index = parseInt(input.dataset.index);
+                    const newQuantity = parseInt(input.value);
+                    if (newQuantity > 0) {
+                        cart[index].quantity = newQuantity;
+                        localStorage.setItem('cart', JSON.stringify(cart));
+                        updateCart();
+                    }
+                });
+            });
+            
+            // Update selected services in contact form
+            updateSelectedServices();
+        }
+        
+        // Remove item from cart
+        function removeItemFromCart(index) {
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCart();
+            updateSelectedServices();
+        }
+        
+        // Calculate cart totals
+        function calculateTotals(subtotal) {
+            cartSubtotal.textContent = `PKR ${subtotal}`;
+            
+            let discountAmount = 0;
+            if (discountApplied) {
+                discountAmount = Math.round(subtotal * discountPercentage);
+            }
+            
+            cartDiscount.textContent = `- PKR ${discountAmount}`;
+            
+            const total = subtotal - discountAmount;
+            cartTotal.textContent = `PKR ${total}`;
+            
+            // Update save badge
+            if (discountAmount > 0) {
+                cartSave.textContent = `SAVING: PKR ${discountAmount}`;
+                cartSave.classList.remove('hidden');
+            } else {
+                cartSave.classList.add('hidden');
+            }
+        }
+        
+        // Apply discount
+        applyDiscount.addEventListener('click', () => {
+            const code = discountCode.value.trim().toUpperCase();
+            
+            if (code === 'AYAN10') {
+                discountApplied = true;
+                discountPercentage = 0.1; // 10% discount
+                discountMessage.textContent = '10% discount applied!';
+                discountMessage.style.color = '#00ff7f';
+                
+                // Update totals
+                const subtotal = cart.reduce((total, item) => {
+                    const minPrice = parseInt(item.price.split('-')[0]);
+                    return total + (minPrice * item.quantity);
+                }, 0);
+                
+                calculateTotals(subtotal);
+            } else {
+                discountApplied = false;
+                discountPercentage = 0;
+                discountMessage.textContent = 'Invalid discount code';
+                discountMessage.style.color = '#ff5555';
+                
+                // Update totals
+                const subtotal = cart.reduce((total, item) => {
+                    const minPrice = parseInt(item.price.split('-')[0]);
+                    return total + (minPrice * item.quantity);
+                }, 0);
+                
+                calculateTotals(subtotal);
+            }
+        });
+        
+        // Update selected services in contact form
+        function updateSelectedServices() {
+            selectedServices.innerHTML = '';
+            
+            if (cart.length === 0) {
+                selectedServices.innerHTML = '<p class="text-gray-500 text-center py-4">No services selected</p>';
+                servicesData.value = '';
+                return;
+            }
+            
+            cart.forEach((item, index) => {
+                // Extract min price from range
+                const minPrice = parseInt(item.price.split('-')[0]);
+                const itemTotal = minPrice * item.quantity;
+                
+                const serviceTag = document.createElement('div');
+                serviceTag.className = 'inline-flex items-center bg-primary/20 text-light px-3 py-1 rounded-full text-sm mr-2 mb-2 fade-in';
+                serviceTag.innerHTML = `
+                    ${item.name} (${item.quantity}x)
+                    <span class="ml-2">PKR ${itemTotal}</span>
+                    <button class="ml-2 text-red-500 remove-service" data-index="${index}">
+                        <i class="fas fa-times text-xs"></i>
+                    </button>
+                `;
+                selectedServices.appendChild(serviceTag);
+            });
+            
+            // Add event listeners to remove buttons in contact form
+            document.querySelectorAll('.remove-service').forEach(button => {
+                button.addEventListener('click', () => {
+                    const index = parseInt(button.dataset.index);
+                    removeItemFromCart(index);
+                });
+            });
+            
+            // Update hidden input with services data
+            servicesData.value = JSON.stringify(cart);
+        }
+        
+        // Checkout button scrolls to contact section
+        checkoutButton.addEventListener('click', () => {
+            closeCartSidebar();
+            
+            document.querySelector('#contact').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+        
+        // Form submission handling
+        const orderForm = document.getElementById('orderForm');
+        const successMessage = document.getElementById('successMessage');
+        
+        orderForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simple form validation
+            if (!this.name.value || !this.email.value || !this.phone.value) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            // Submit form via Formspree
+            const formData = new FormData(this);
+            
+            fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Show success message
+                    successMessage.classList.remove('hidden');
+                    
+                    // Reset form
+                    this.reset();
+                    
+                    // Clear cart
+                    cart = [];
+                    localStorage.removeItem('cart');
+                    updateCart();
+                    
+                    // Reset discount
+                    discountApplied = false;
+                    discountPercentage = 0;
+                    discountCode.value = '';
+                    discountMessage.textContent = '';
+                    
+                    // Scroll to success message
+                    successMessage.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            })
+            .catch(error => {
+                console.error(error);
+                alert('There was a problem submitting your order. Please try again.');
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add animations to elements when they enter the viewport
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Random animation effects on elements
+        const elementsToAnimate = document.querySelectorAll('.service-card, .floating-icon, .gradient-border');
+        elementsToAnimate.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                const animations = ['tada', 'flip', 'zoom-in', 'bounce'];
+                const randomAnim = animations[Math.floor(Math.random() * animations.length)];
+                el.classList.add(randomAnim);
+                setTimeout(() => {
+                    el.classList.remove(randomAnim);
+                }, 1000);
+            });
         });
     </script>
 </body>
